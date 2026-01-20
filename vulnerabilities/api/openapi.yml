@@ -25,21 +25,6 @@ paths:
       responses:
         '200':
           description: 'Successful operation.'
-  /vulnerabilities/api/v2/health/connectivity:
-    post:
-      tags:
-        - health
-      description: 'The server occasionally loses connectivity to other systems and so this can be used to check connectivity status.'
-      operationId: checkConnectivity
-      requestBody:
-        description: 'Remote host.'
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Target'
-      responses:
-        '200':
-          description: 'Successful operation.'
   /vulnerabilities/api/v2/health/status:
     get:
       tags:
