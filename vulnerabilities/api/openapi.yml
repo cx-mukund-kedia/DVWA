@@ -25,21 +25,6 @@ paths:
       responses:
         '200':
           description: 'Successful operation.'
-  /vulnerabilities/api/v2/health/connectivity:
-    post:
-      tags:
-        - health
-      description: 'The server occasionally loses connectivity to other systems and so this can be used to check connectivity status.'
-      operationId: checkConnectivity
-      requestBody:
-        description: 'Remote host.'
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Target'
-      responses:
-        '200':
-          description: 'Successful operation.'
   /vulnerabilities/api/v2/health/status:
     get:
       tags:
@@ -199,6 +184,27 @@ paths:
         '422':
           description: 'Invalid order object provided'
   '/vulnerabilities/api/v2/user/{id}':
+    get:
+      tags:
+        - user
+      description: 'Get a user by ID.'
+      operationId: getUserByID
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Successful operation.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: 'User not found.'
     put:
       tags:
         - user
@@ -228,6 +234,23 @@ paths:
           description: 'User not found'
         '422':
           description: 'Invalid user object provided'
+    delete:
+      tags:
+        - user
+      description: 'Delete user by ID.'
+      operationId: deleteUserById
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Successful operation.'
+        '404':
+          description: 'User not found'
   /vulnerabilities/api/v2/user/:
     get:
       tags:
